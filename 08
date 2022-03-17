@@ -1,0 +1,41 @@
+/*
+ * 아래 코드의 문제점을 수정해서 실행결과와 같은 결과를 얻도록 하시오.
+ * 결과 >
+ *  c=30
+ *  ch=C
+ *  f=1.5
+ *  l=27000000000
+ *  result=true
+ */
+public class prac03_08 {
+	public static void main(String[] args) {
+		
+		byte a = 10;
+		byte b = 20;
+//		byte c = a + b;				// byte에 int연산 결과를 담으려다보니. 에러 형변환 해주면 됨.
+		byte c = (byte)(a + b);
+		
+		char ch = 'A';
+//		ch = ch + 2;				// + 2로 인해서 int로 형변환 됨. 그래서 char에 int를 담으려니 에러남. 그래서 형변환하면 끝.
+		ch = (char)(ch + 2);
+
+//		float f = 3 / 2; 			// int / int = int 그래서 1인데, 단지 그 결과 1이 float형식으로 된 것뿐.
+		float f = 3 / (float)2;   	// 한쪽만 형변환 해줘도, 산술변환에 의해서 자동 형변환 일어남.
+//		long l = 3000 * 3000 * 3000;	// int * int * int = int..분명 오버플로우 됬을거고, 그 값이 long형 l에 담긴 것. 
+		long l = 3000L * 3000 * 3000;	// 한쪽만 L형으로 바꿔줘도, 산술 형변환으로 인해 값이 올바르게 나옴.
+		
+		
+		float f2 = 0.1f;
+//		double d = 0.1;
+		double d = 0.1f;
+		
+		boolean result = d==f2;  	//	같아보이지만, 미묘하게 소수점 뒤에 수들이 오차가 일어난다. 
+									// 	그래서 float을 double로 바꾸든지, 혹은 double을 float으로 바꿔도 됨.
+		
+		System.out.println("c="+c);
+		System.out.println("ch="+ch);
+		System.out.println("f="+f);
+		System.out.println("l="+l);
+		System.out.println("result="+result);
+	}
+}
