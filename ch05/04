@@ -1,0 +1,29 @@
+//	2차원 배열 arr에 담긴 모든 값의 총합과 평균을 구하는 프로그램을 완성하시오.
+
+public class prac05_04 {
+	public static void main(String[] args) {
+		int[][] arr = {
+				{ 5, 5, 5, 5, 5},
+				{ 10,10,10,10,10},
+				{ 20,20,20,20,20},
+				{ 30,30,30,30,30}
+		};
+		
+		int total = 0;
+		float average = 0;
+		
+//		(1) 알맞은 코드를 넣어 완성하시오.
+		int tmp = 0;		// arr[i]의 길이를 담을 변수
+		
+		for(int i=0; i < arr.length; i++) {
+			for(int j=0; j < arr[i].length; j++) {
+				total += arr[i][j];
+				tmp++;
+			}
+		}
+		average = total / (float)tmp;
+
+		System.out.println("total="+total);
+		System.out.println("average="+average);
+	} // end of main
+} // end of class
