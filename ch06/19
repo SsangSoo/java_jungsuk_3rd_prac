@@ -1,0 +1,33 @@
+// 다음 코드의 실행 결과를 예측하여 적으시오.
+
+public class prac06_19 {
+
+	public static void change(String str) {
+		str += "456";
+	}
+	
+	public static void main(String[] args) {
+		String str = "ABC123";
+		System.out.println(str);
+		change(str);
+		System.out.println("After change:"+str);
+	}
+}
+
+// ABC123 
+// ABC123456 
+// 위의 내용이 예상 한 것이지만, 결과는 아래와 같다.
+
+// ABC123
+// After change:ABC123 
+
+// change메서드에서 str = str+"456"; 으로 인해서 ABC123456이 출력될 것 같았다.
+// 그런데 다르게 나왔다. 내가 생각한 이유는 단지 "456"을 더하고 그걸로 끝인 거같다. 
+// method가 종료되면서 str에 "456"을 더한 내용도 사라졌을 것이다. 
+// 더욱 큰 이유는 "456"을 더했을지라도, 반환을 해주지 않았기 때문에, ABC123456이 아니라 ABC123이 나온 것 같다.
+
+// 반환도, 메서드가 종료되면서 사라진 것도 이유가 아니다...
+// 해설에 "문자열은 내용을 변경할 수 없기 때문에 덧셈연산을 하면 
+// 새로운 문자열이 생성되고 새로운 문자열의 주소가 변수 str에 저장된다."
+// 이것이 아이유다... 그래서 change에서 다른 문자열 객체가 새로 생성되고, change의 str은 새로 생성된 문자열 객체를 참조한다.
+// 그리고 change메서드가 종료되면서 나중에 가비지 컬렉터에 의해 사라진다.
