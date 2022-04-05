@@ -1,0 +1,38 @@
+public class prac06_18 {}
+
+// 다음의 코드를 컴파일하면 에러가 발생한다. 컴파일 에러가 발생하는 라인과 그 이유를 설명하시오.
+
+class MemberCall6118 {
+	int iv = 10;
+	static int cv = 20;
+	
+	int iv2 = cv;
+//	static int cv2 = iv;		// 라인 A
+	
+	static void staticMethod1() {
+		System.out.println(cv);
+//		System.out.println(iv);	// 라인 B
+	}
+	
+	void instanceMethod1() {
+		System.out.println(cv);
+		System.out.println(iv);	// 라인 C
+	}
+	
+	static void staticMethod2() {
+		staticMethod1();
+//		instanceMethod1();		// 라인 D
+	}
+	
+	void instanceMethod2() {
+		staticMethod1();
+		instanceMethod1();		// 라인 E
+	}
+}
+
+//	라인 A, B, D에 컴파일 에러가 발생한다.
+//	static멤버에 인스턴스멤버를 참조하려고 해서 컴파일 에러가 발생한다.
+//	static멤버는 객체 생성없이 사용가능하지만,
+//	인스턴스멤버는 객체가 생성되어야만 사용가능하다.
+//	static멤버가 인스턴스멤버를 사용할 때, 객체가 생성이 되었는지 되지 않았는지 여부를 알 수가 없기 때문에
+//	static멤버에서 인스턴스멤버를 사용하지 못 한다.
