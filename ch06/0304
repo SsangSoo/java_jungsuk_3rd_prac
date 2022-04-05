@@ -1,0 +1,46 @@
+// 06-03다음과 같은 멤버변수를 갖는 Student 클래스를 정의하시오.
+//	String name;		// 학생이름
+//	int ban;			// 반
+//	int no;				// 번호
+//	int kor;			// 국어점수
+//	int eng;			// 영어점수
+//	int math;			// 수학점수
+
+
+// 06-04 문제 06-03에서 정의한 Student클래스에 다음과 같이 정의된 두 개의 메서드 getTotal()과 getAverage()를 추가하시오.
+
+public class prac06_03to04 {
+	public static void main(String[] args) {
+		Student6134 s = new Student6134();
+		s.name = "홍길동";
+		s.ban = 1;
+		s.no = 1;
+		s.kor = 100;
+		s.eng = 60;
+		s.math = 76;
+		
+		System.out.println("이름 : " + s.name);
+		System.out.println("총점 : " + s.getTotal());
+		System.out.println("평균 : " + s.getAverage());
+	}
+}
+
+class Student6134 {
+//	=============================
+//	(1) 알맞은 코드를 넣어 완성하시오.
+	String name;		// 학생이름
+	int ban;			// 반
+	int no;				// 번호
+	int kor;			// 국어점수
+	int eng;			// 영어점수
+	int math;			// 수학점수
+	
+	int getTotal() {
+		return kor + eng + math;
+	}
+	
+	double getAverage() {
+		return Math.round(((kor + eng + math) / 3.0 ) * 10) / 10.0;
+	}
+//	=============================
+}
