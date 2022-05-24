@@ -1,0 +1,63 @@
+/* 7-7
+ * 다음의 코드를 실행했을 때 호출되는 생성자의 순서와 실행결과를 적으시오.
+ */
+
+class Parent177 {
+	int x = 100;		// 명시적 초기화 ..ㅋ
+	
+	Parent177() {		// 3번 super()로 인해 호출 될 생성자
+		this(200);		// 이와 같은 형식의 생성자 호출
+	}
+	
+	Parent177(int x) {	// 4번 Parent177()의 this(200)으로 호출된 생성자
+		this.x = x;		// x의 값이 200으로..
+	}
+	 
+	int getX() {		
+		return x;			
+	}
+}
+
+class Child177 extends Parent177 {
+	int x = 3000;
+	
+	Child177() {		// 1번
+		this(1000);		// 이생성자로
+	}
+	
+	Child177(int x) {	// 2번
+		this.x = x;		// 생성자에 다른 생성자가 없어서, super()를 추가. super()로 조상의 생성자를 호출
+	}
+}
+
+public class prac107_07 {
+	public static void main(String[] args) {
+		
+		Child177 c = new Child177();
+		
+		System.out.println("x="+c.getX());
+	}
+}
+// getX()하면 > 1000 예상
+// 결과 200;;
+// 실행하지 않고 결과를 예상하고, 적은 다음 코드 실행하기..
+
+/*
+ *  정리
+ *  
+ *  Child() 생성자로 보면 this(1000)으로 Child(int x)를 호출하는데 생성자의 조건은 생성자 안에 무조건 다른 생성자가 와야된다. 그런데 Child(int x)생성자의 내부를 보면
+ *  다른 생성자가 없다. 그래서 super()를 추가하고, super()의 생성자를 따라서 Parent()의 생성자를 호출하는데 그 생성자의 내부엔 this(200)이 있으며, 그와 같은 생성자를 보면
+ *  this.x = x가 있다. (물론 이 생성자도 다른 생성자가 없어서 컴파일러가 super()를 붙여주는데 Parent의 조상은 Object이다..멀리 왔다.)
+ *  
+ *  그래서 Child 형태의 참조변수 c로 참조하는 인스턴스의 멤버에는 
+ *  Parent로부터 상속받은 x 하나, Child 클래스에 정의된 x 하나, 그리고 Parent클래스로부터 상속받은 getX()메서드 하나..
+ *  
+ * 
+ *  
+ *  getX()가 Child에 오버라이딩이나, 정의되어있지 않아 Parent의 getX()를 호출하는데, getx()메서드가 
+ *  Parent의 x를 호출하도록 되어있기 때문에, 결국 생성자와 this() < 형태로 호출하는 생성자를 따라가다보면 결국 x는 200이 되어있고, 200이 출력된다.
+ * 
+ * 	답지 해설부분 중 핵심. 
+ * >> getX()는 조상인 Parent클래스에 정의된 것이라서, getX()에서 x는 Parent 클래스의 인스턴스변수 x를 의미한다 그래서 x=200이 출력된다.
+ */
+
