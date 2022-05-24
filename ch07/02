@@ -1,0 +1,90 @@
+// 7-2 
+// 문제 7-1의 SutdaDeck클래스에 다음에 정의된 새로운 메서드를 추가하고, 테스트 하시오.
+// [주의] Math.random()을 사용하는 경우 실행결과와 다를 수 있음.
+/* 
+ * 1.	메서드명 : shuffle
+ * 		기	 능 : 배열 cards에 담긴 카드의 위치를 뒤섞는다. (Math.random()사용)
+ * 		반환타입 : 없음
+ * 		매개변수 : 없음
+ * 
+ * 2.	메서드명 : pick
+ * 		기	 능 : 배열 cards에서 지정된 위치의 SutdaCard를 반환한다.
+ * 		반환타입 : SutdaCard
+ * 		매개변수 : int index - 위치
+ * 
+ * 3.	메서드명 : pick
+ * 		기	 능 : 배열 cards에서 임의의 위치의 SutdaCard를 반환한다. (Math.random()사용)
+ * 		반환타입 : SutdaCard
+ * 		매개변수 : 없음
+ */
+
+class SutdaDeck172 {
+		final int CARD_NUM = 20;							// 카드 갯수
+		SutdaCard172[] cards = new SutdaCard172[CARD_NUM];	// 카드 배열.
+		
+		SutdaDeck172() {
+//			문제 7-1의 답이므로 생략.
+			for(int i=0; i<CARD_NUM; i++) {					// 	카드 갯수 20개의 배열 index는 0~19이고
+				if(i==0 || i==2 || i==7) {					//	배열 0,2,7 은 숫자 1,3,8이다.
+					cards[i] = new SutdaCard172(i+1 > 10 ? i+1-10 : i+1 , true);
+				} else {
+					cards[i] = new SutdaCard172(i+1 > 10 ? i+1-10 : i+1 , false);
+				}
+//			문제 7-1의 답이므로 생략.
+			}
+		} // 메서드의 끝
+//			(1) 위에 정의된 세 개의 메서드를 작성하시오.
+		void shuffle() {									// shuffle()
+			SutdaCard172 tmp = new SutdaCard172();			// 섞기 위해 만든 임시 참조변수.		
+			for(int i=0; i<CARD_NUM; i++) {
+				int tmpnum = (int)(Math.random() * 20);
+				tmp = cards[i];
+				cards[i] = cards[tmpnum];
+				cards[tmpnum] = cards[i];
+			} // for문의 끝
+		} // shuffle의 끝
+		
+		SutdaCard172 pick(int index) {		// 배열 cards에서 지정된 위치의 SutdaCard를 반환한다.
+			return cards[index];
+		} // pick(int index) 메서드 끝.
+		
+		SutdaCard172 pick() {	// 배열 cards에서 임의의 위치의 SutdaCard를 반환한다.
+			return cards[(int)(Math.random() * 20)];
+		}
+//			답
+	}
+	
+	class SutdaCard172 {
+		int num;
+		boolean isKwang;
+		
+		SutdaCard172() {
+			this(1, true);
+		}
+		
+		SutdaCard172(int num, boolean isKwang) {
+			this.num = num;
+			this.isKwang = isKwang;
+		}
+		
+		// info()대신 Object클래스의 toString()을 오버라이딩 했다.
+		public String toString() {
+			return num + (isKwang ? "K" : "");
+		}
+	}
+
+public class prac107_02 {
+	public static void main(String[] args) {
+		SutdaDeck172 deck = new SutdaDeck172();
+		
+		System.out.println(deck.pick(0));
+		System.out.println(deck.pick());
+		deck.shuffle();
+		
+		for(int i=0; i < deck.cards.length; i++)
+			System.out.print(deck.cards[i]+",");
+		
+		System.out.println();
+		System.out.println(deck.pick(0));
+	}
+}
