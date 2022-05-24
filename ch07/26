@@ -1,0 +1,19 @@
+/* 7-26 
+ * Outer클래스의 내부 클래스 Inner의 멤버변수 iv의 값을 출력하시오.
+ * 스태틱클래스의 iv.
+ */
+
+class Outer1726 {
+	static class Inner {
+		int iv = 200;
+	}
+}
+
+public class prac107_26 {
+	public static void main(String[] args) {
+//		(1) 알맞은 코드를 넣어 완성하시오.
+		Outer1726.Inner oi = new Outer1726.Inner();
+		System.out.println(oi.iv);
+//		static 내부 클래스는 외부클래스 생성하지 않고도, static 내부 클래스를 생성가능
+	}
+}
