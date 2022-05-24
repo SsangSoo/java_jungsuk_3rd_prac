@@ -1,0 +1,23 @@
+public class prac108_04 {}
+
+/* 8-4 
+ * 다음과 같은 메서드가 있을 때, 예외를 잘못 처리한 것은?(모두 고르시오)
+ * 
+ * 	void method() throws InvalidNumerException, NotANumberException {}
+ * 
+ * class NumberException extends RuntimeException {}
+ * class InvalidNumberException extends NumberException {}
+ * class NotANumberException extends NumberException {}
+ * 
+ * a. try{ method(); } catch(Exception e) {}
+ * b. try{ method(); } catch(NumberException e) {} catch(Exception e) {}
+ * c. try{ method(); } catch(Exception e) {} catch(NumberException e) {}
+ * d. try{ method(); } catch(InvalidNumberException e) {} catch(NotANumberException e) {}
+ * e. try{ method(); } catch(NumberException e) {}
+ * f. try{ method(); } catch(RuntimeException e) {}
+ * 
+ * c > Exception예외 처리를 첫번째 catch문에 놓았으므로, 모든 예외가 이미 다 처리 되기 때문에, NumberException의 예외가 발생했다하더라도 이 catch문으로 가질 않는다. 불필요한 catch블럭..
+ * 
+ */
+
+
