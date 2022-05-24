@@ -1,0 +1,50 @@
+// 7-1 
+// 섯다카드 20장을 포함하는 섯다카드 한 벌(SutdaDeck클래스)을 정의한 것이다. 섯다카드 20장을 담은  SutdaCard배열을 초기화하시오. 
+// 단, 섯다카드는 1부터 10까지의 숫자가 적힌 카드가 한 쌍씩 있고, 1, 3, 8인 경우에는 둘 중의 한 장은 광(Kwang)이어야 한다. 
+// 즉, SutdaCard의 인스턴스가변수 isKwang의 갑싱 true이어야 한다.
+
+class SutdaDeck171 {
+		final int CARD_NUM = 20;							// 카드 갯수
+		SutdaCard171[] cards = new SutdaCard171[CARD_NUM];	// 카드 배열.
+		
+		SutdaDeck171() {
+//			(1) 배열 SutdaDeck를 적절히 초기화 하시오.
+			for(int i=0; i<CARD_NUM; i++) {					// 	카드 갯수 20개의 배열 index는 0~19이고
+				if(i==0 || i==2 || i==7) {					//	배열 0,2,7 은 숫자 1,3,8이다.
+					cards[i] = new SutdaCard171(i+1 > 10 ? i+1-10 : i+1 , true);
+				} else {
+					cards[i] = new SutdaCard171(i+1 > 10 ? i+1-10 : i+1 , false);
+				}
+		}
+			
+//			답	
+		}
+	}
+	
+	class SutdaCard171 {
+		int num;
+		boolean isKwang;
+		
+		SutdaCard171() {
+			this(1, true);
+		}
+		
+		SutdaCard171(int num, boolean isKwang) {
+			this.num = num;
+			this.isKwang = isKwang;
+		}
+		
+		// info()대신 Object클래스의 toString()을 오버라이딩 했다.
+		public String toString() {
+			return num + (isKwang ? "K" : "");
+		}
+	}
+
+public class prac107_01 {
+	public static void main(String[] args) {
+		SutdaDeck171 deck = new SutdaDeck171();
+		
+		for(int i=0; i < deck.cards.length; i++)
+			System.out.print(deck.cards[i]+",");
+	}
+}
