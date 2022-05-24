@@ -1,0 +1,19 @@
+public class prac107_16 {}
+
+/* 7-16
+ * 다음 중 연산결과가 true가 아닌 것은? (모두 고르시오.)
+ * 
+ * class Car()
+ * class FireEngine extends Car implements Movable {}
+ * class Ambulance extends Car {}
+ * 
+ * FireEngine fe = new FireEngine();
+ * 
+ * a. fe instanceof FireEngine
+ * b. fe instanceof Movable
+ * c. fe instanceof Object
+ * d. fe instanceof Car
+ * e. fe instanceof Ambulance > 땡! 같은 조상을 가졌다만, 조상클래스의 다른 자손클래스타입이기 때문에, 형변환 불가. 
+ * 그래서 instanceof을 쓰면 false를 반환한다. 
+ * 
+ */
