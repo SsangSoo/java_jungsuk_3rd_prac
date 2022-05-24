@@ -1,0 +1,30 @@
+public class prac108_03 {}
+
+/* 8-3
+ * 
+ * 다음 중 오버라이딩이 잘못된 것은?(모두 고르시오)
+ * 
+ * void add(int a, int b) 
+ * 		throws InvalidNumberException, NotANumberException {}
+ * 
+ * class NumberException extends Exception {}
+ * class InvalidNumberException extends NumberException {}
+ * class NotANumberException extends NumberException {}
+ * 
+ *  a. void add(int a, int b) throws InvalidNumberException, NotANumberException {}
+ *  b. void add(int a, int b) throws InvalidNumberException, {}
+ *  c. void add(int a, int b) throws NotANumberException {}
+ *  d. void add(int a, int b) throws Exception {}
+ *  e. void add(int a, int b) throws NumberException {}
+ *  
+ *	오버라이딩 조건 중 예외 선언과 관련된 내용은 조상보다 많은 수의 예외를 선언하면 안 됨.
+ * 보이는 예외선언의 개수보다는 예외선언으로 인해 처리되는 예외의 수를 고려해야 한다.
+ * 
+ *    그래서 d는 무조건 틀리다. Exception은 모든 예외의 조상 예외클래스이기 때문에, 보이기엔 선언 개수가 적어서 되는 것처럼 보이지만, 
+ *    실제론 2개보다 더 많은 예외의 수를 선언한 것과 같다.
+ *    
+ * 	  e도 틀림. 예외선언의 개수가 NumberException의 자손이 지금 나와있는 예외 2개만 있다고 하더라도, NumberException이 
+ * 	2개의 예외의 조상이기 때문에, 문제에 주어진 add(int a, int b)메서드보다 더 많은 수의 예외를 처리할 수 있도록 선언되어 있는 것이다. 
+ *	   
+ *
+ */
