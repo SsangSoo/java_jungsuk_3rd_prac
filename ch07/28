@@ -1,0 +1,33 @@
+/* 7-28
+ * 아래의 EventHandler를 익명 클래스(anonymous class)로 변경하시오.
+ */
+
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class prac107_28 {
+	public static void main(String[] args) {
+		Frame f = new Frame();
+		f.addWindowListener(new WindowAdapter() {
+			public void WindowClosing(WindowEvent e) {
+				e.getWindow().setVisible(false);
+				e.getWindow().dispose();
+				System.exit(0);
+			}
+		});
+	} // main의 끝
+} 
+		
+//		여기부터 주석 처리 한 곳을 익명클래스로.. 위에 정의함.
+//		f.addWindowListener(new EventHandler());
+//	}
+//}
+//
+//class EventHandler extends WindowAdapter {
+//	public void WindowClosing(WindowEvent e) {
+//		e.getWindow().setVisible(false);
+//		e.getWindow().dispose();
+//		System.exit(0);
+//	}
+//}
