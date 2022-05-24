@@ -1,0 +1,28 @@
+/* 7-27
+ * 다음과 같은 실행결과를 얻도록 (1)~(4)의 코드를 완성하시오.
+ */
+class Outer1727 {
+	int value = 10;
+	
+	class Inner {
+		int value = 20;
+		void method1() {
+			int value = 30;
+			
+			System.out.println(/* (1) */ value);
+			System.out.println(/* (2) */ this.value);
+			System.out.println(/* (3) */ Outer1727.this.value);
+		}
+		
+	} // Inner클래스의 끝
+} // Outer클래스의 끝
+
+public class prac107_27 {
+	public static void main(String[] args) {
+//		(4) 알맞은 코드를 넣어 완성하시오.
+		Outer1727 oc = new Outer1727();	// Inner내부 클래스가  인스턴스 내부 클래스기 때문에, 외부클래스 생성해줘야 함.
+		Outer1727.Inner inner = oc.new Inner();
+//		(4) 완성.
+		inner.method1();
+	}
+}
