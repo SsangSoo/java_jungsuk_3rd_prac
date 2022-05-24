@@ -1,0 +1,47 @@
+/* 7-5
+ * 다음의 코드를 컴파일하면 에러가 발생한다.
+ * 그 이유를 설명하고 에러를 수정하기 위해서는 코드를 어떻게 바꾸어야 하는가?
+ */
+
+class Product175 {
+	int price;		// 제품의 가격
+	int bonusPoint;	// 제품구매 시 제공하는 보너스점수
+	
+	Product175(int price) {
+		this.price = price;
+		bonusPoint = (int)(price/10.0);
+	}
+}
+
+class Tv175 extends Product175 {
+//	Tv175() {}		// 잘못된 부분
+/*	생성자는 원래 첫 줄에 다른 생성자가 하나 들어가야한다.
+ * 	그렇지 않으면 컴파일러가 super()를 자동적으로 추가하는데,
+ * 	super()를 쓰게 되면, Product() (지금 여기선 Product175()..) 를 호출하지만,
+ * 	Product 클래스에는 Product()를 찾아볼 수 없다. 
+ * 	
+ *	클래스에 생성자가 하나라도 없으면, 컴파일러가 기본생성자를 추가해주는데, 이미 Product클래스에는 Product(int price) 생성자가 이미 있으니, 
+ *	기본 생성자가 추가되진 않았을 것이다.
+ *	그래서 Tv() {} < 이 생성자의 경우 구현부 안에 super(); 컴파일러가 자동적으로 추가해줄 것인데, 
+ *	super(); 로  조상 클래스 Product의 기본 생성자를 호출하려하니 Product에 기본 생성자가 없다. 그래서
+ *	컴파일 에러가 발생. 
+ *	따라서 아래와 같이 Tv의 가격(price)가 100이라 가정하고, 
+ *	Product(int price) < 형식에 맞게 생성자를 구현해주어야 한다.
+ *	, 따라서 아래와 같이 구현함.
+ */
+	Tv175() {
+		super(100);	
+	}
+//	이렇게..ㅎ
+	
+	
+	public String toString() {
+		return "Tv";
+	}
+}
+
+public class prac107_05 {
+	public static void main(String[] args) {
+		Tv175 t = new Tv175();
+	}
+}
