@@ -1,0 +1,13 @@
+public class prac107_08 {}
+
+/* 7-8
+ * 
+ * 다음 중 접근제어자를 접근범위가 넓은 것에서 좁은 거의 순으로 바르게 나열한 것은?
+ * 답 a
+ * a - public - protected - (default) - private
+ * 
+ * public >		제한 범위 x
+ * protected > 	같은 패키지 + 다른 패키지에서 상속받은 자손패키지
+ * (default) > 	같은 패키지
+ * private > 	같은 클래스
+ */
