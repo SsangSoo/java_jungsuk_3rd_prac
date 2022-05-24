@@ -1,0 +1,49 @@
+/* 
+ * 8-6
+ * 
+ * 아래의 코드가 수행되었을 때의 실행결과를 적으시오.
+ */
+
+public class prac108_06 {
+	public static void main(String[] args) {
+		try {
+			method1();
+		} catch(Exception e) {
+			System.out.println(5);
+		}
+	}
+	
+	static void method1() {
+		try {
+			method2();
+			System.out.println(1);
+		} catch(ArithmeticException e) {
+			System.out.println(2);
+		} finally {
+			System.out.println(3);
+		}
+		
+		System.out.println(4);
+	}	// method1()
+	
+	static void method2() {
+		throw new NullPointerException();
+	}
+}
+
+/* 	
+ *	예상 실행결과
+ *  3
+ *  5
+ *  
+ *  method1()에서 method2()호출 > method2()에서 NullPointerException 던지기 >
+ *  try에서 예외 발생, 해당 되는 예외를 catch에서 찾을 수 없음. 그럼에도 불구하고, 무조건 실행하는 finally 문장의 3 출력 후,
+ *  method1()을 호출한 main메서드로 돌아감 main메서드의 catch(Exception e)에 의해서 5출력 후, main메서드 종료
+ *    
+ *  
+ *  실제 실행결과
+ *  3
+ *  5
+ *  
+ */
+	
